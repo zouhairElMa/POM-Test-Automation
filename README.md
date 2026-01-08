@@ -261,7 +261,7 @@ Ce projet est sous **licence MIT** - voir le fichier [LICENSE](LICENSE) pour plu
 
 - 🌐 **GitHub** : [@zouhairElMa](https://github.com/zouhairElMa)
 - 📧 **Email** : [zoumattad@gmail.com](mailto:zoumattad@gmail.com)
-- 💼 **LinkedIn** : [Zouhair El Mattad](https://www.linkedin.com/in/zouhair-el-mattad)
+- 💼 **LinkedIn** : [Zouhair El Mattad](https://www.linkedin.com/in/zel2351)
 - 📊 **Documentation** : [Tests Analysis](https://docs.google.com/spreadsheets/d/18mKEhHWsQ2UGU84bZ22aSy5wcPJxQaMutFGm5U2aZfI/edit?usp=sharing)
 
 ## 🎯 Expertise
