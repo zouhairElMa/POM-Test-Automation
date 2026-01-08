@@ -1,24 +1,24 @@
 package TestPages;
 
+import Pages.DriverManager;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class TestBase extends AbstractTestNGCucumberTests {
-    public static WebDriver driver;
 
-    @BeforeSuite
+    @BeforeMethod
     public void startDriver() {
-        driver = new EdgeDriver();
-        driver.manage().window().maximize();
-        driver.navigate().to("https://automationexercise.com/");
+        DriverManager.getDriver().navigate().to("https://automationexercise.com/");
     }
 
-    @AfterSuite
+    @AfterMethod
     public void stopDriver() {
-        driver.quit();
+        DriverManager.closeDriver();
     }
 }
+
+
+
+
+

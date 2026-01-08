@@ -64,11 +64,6 @@
             <version>35.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>gherkin</artifactId>
-            <version>35.1.0</version>
-        </dependency>
 
     </dependencies>
 </project>
