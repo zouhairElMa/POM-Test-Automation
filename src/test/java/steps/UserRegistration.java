@@ -1,42 +1,127 @@
+package steps;
+
+import Pages.*;
+import TestPages.TestBase;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+
+public class UserRegistration extends TestBase {
+
+    HomePage homeObject;
+    UserRegistrationPages userRegistrationObject;
+    SignUpLoginPage signUpLoginObject;
+    DelateAccountPage delateAccountObj;
+
+    @Given("the user in the Home\\/Login Page")
+    public void the_user_in_the_home_login_page() {
+        // Write code here that turns the phrase above into concrete actions
+
+    }
+    @When("i Click on Resgister Link")
+    public void i_click_on_resgister_link() {
+        // Write code here that turns the phrase above into concrete actions
+        WebDriver driver = DriverManager.getDriver();
+        homeObject = new HomePage(driver);
+        homeObject.OpenLoginRegistrationPage();
+
+    }
+    @When("i Fill the {string}, {string}")
+    public void i_fill_the(String string, String string2) {
+        // Write code here that turns the phrase above into concrete actions
+        WebDriver driver = DriverManager.getDriver();
+        signUpLoginObject = new SignUpLoginPage(driver);
+        signUpLoginObject.SignUpUser(string, string2, "Login to your account");
+
+    }
+    @When("Move to the Next Page Registration")
+    public void move_to_the_next_page_registration() {
+        // Write code here that turns the phrase above into concrete actions
+
+    }
+
+//******************************************************************************************************************************************************************************
+
+    @When("The user in Registration Page")
+    public void the_user_in_registration_page() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+    @When("i Fill All the Registration Form {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+    public void i_fill_all_the_registration_form(String gender, String password, String firstNameAdressInfo, String lastNameAdressInfo, String companyAddressInfoInfo, String addressInfoInfo, String stateAddressInfo, String cityAddressInfo, String postcodeAddressInfo, String phoneNumberInfoInfo, String birthday, String birthMonth, String birthYear, String countryInfoInfoDropBox) {
+        // Write code here that turns the phrase above into concrete actions
+        WebDriver driver = DriverManager.getDriver();
+        userRegistrationObject = new UserRegistrationPages(driver);
+        // Convert gender string to enum and pass it to CreateAccount method
+        // Convert string to enum for gender selection
+        UserRegistrationPages.Gender genderEnum = UserRegistrationPages.Gender.valueOf(gender.trim().toUpperCase());
+        // Call Create Account with the enum value for gender selection
+        userRegistrationObject.CreateAccount(genderEnum ,password, firstNameAdressInfo, lastNameAdressInfo, companyAddressInfoInfo, addressInfoInfo, stateAddressInfo, cityAddressInfo, postcodeAddressInfo, phoneNumberInfoInfo, birthday, birthMonth, birthYear, countryInfoInfoDropBox, "ACCOUNT CREATED!");
+    }
+    @When("i Click on Registration Button and Delete the Account")
+    public void i_click_on_registration_button() {
+        // Write code here that turns the phrase above into concrete actions
+        WebDriver driver = DriverManager.getDriver();
+        delateAccountObj = new DelateAccountPage(driver);
+        delateAccountObj.DeleteAccount();
+    }
+    @Then("Get the Succesful Registration Page")
+    public void get_the_succesful_registration_page() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @When("i Click on Registration Button")
+    public void i_click_on_registration_button_only() {
+        // Write code here that turns the phrase above into concrete actions
+        // Pour les cas invalides, on clique sur le bouton sans supprimer le compte
+    }
+
+    @Then("I see an error message")
+    public void i_see_an_error_message() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+}
+
+
+
+
 //package steps;
 //
-//import Pages.HomePage;
-//import Pages.PageBase;
-//import Pages.UserRegistrationPages;
-//import TestPages.TestBase;
+//import Pages.*;
 //import io.cucumber.java.en.Given;
 //import io.cucumber.java.en.Then;
 //import io.cucumber.java.en.When;
 //import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
 //
-//public class UserRegistration extends TestBase {
+//public class UserRegistration {
 //
 //    HomePage homeObject;
 //    UserRegistrationPages userRegistrationObject;
+//    SignUpLoginPage signUpLoginObject;
+//    DelateAccountPage delateAccountObj;
 //
-//    @Given("the user in the Home\\/Login Page")
-//    public void the_user_in_the_home_login_page() {
+//    @Given("the user is on the Home\\/Login Page")
+//    public void the_user_is_on_the_home_login_page() {
 //        // Write code here that turns the phrase above into concrete actions
-////        homeObject = new HomePage(driver);
-////        homeObject.validateCheckAssertion("New User Signup!");
-//
 //
 //    }
-//    @When("i Click on Resgister Link")
-//    public void i_click_on_resgister_link() {
+//
+//    @When("I click on the Register Link")
+//    public void i_click_on_the_register_link() {
 //        // Write code here that turns the phrase above into concrete actions
+//        WebDriver driver = DriverManager.getDriver();
 //        homeObject = new HomePage(driver);
 //        homeObject.OpenLoginRegistrationPage();
-//
 //    }
-//    @When("i Fill the {string}, {string}")
-//    public void i_fill_the(String string, String string2) {
+//
+//    @When("I fill the {string}, {string}")
+//    public void i_fill_the(String userName, String email) {
 //        // Write code here that turns the phrase above into concrete actions
-//        userRegistrationObject = new UserRegistrationPages(driver);
-//        userRegistrationObject.SignUpUser(string, string2);
-//
+//        WebDriver driver = DriverManager.getDriver();
+//        signUpLoginObject = new SignUpLoginPage(driver);
+//        signUpLoginObject.SignUpUser(userName, email, "New User Signup!");
 //    }
+//
 //    @When("Move to the Next Page Registration")
 //    public void move_to_the_next_page_registration() {
 //        // Write code here that turns the phrase above into concrete actions
@@ -45,23 +130,39 @@
 //
 ////******************************************************************************************************************************************************************************
 //
-//    @When("The user in Registration Page")
-//    public void the_user_in_registration_page() {
+//    @When("The user is in the Registration Page")
+//    public void the_user_is_in_the_registration_page() {
 //        // Write code here that turns the phrase above into concrete actions
 //    }
-//    @When("i Fill All the Registration Form {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
-//    public void i_fill_all_the_registration_form(String string, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10, String string11, String string12, String string13) {
+//
+//    @When("I fill all the Registration Form {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+//    public void i_fill_all_the_registration_form(String password, String firstNameAdressInfo, String lastNameAdressInfo, String companyAddressInfoInfo, String addressInfoInfo, String stateAddressInfo, String cityAddressInfo, String postcodeAddressInfo, String phoneNumberInfoInfo, String birthday, String birthMonth, String birthYear, String countryInfoInfoDropBox) {
 //        // Write code here that turns the phrase above into concrete actions
+//        WebDriver driver = DriverManager.getDriver();
 //        userRegistrationObject = new UserRegistrationPages(driver);
-//        userRegistrationObject.CreateAccount(string, string2, string3, string4, string5, string6, string7, string8, string9, string10, string11, string12, string13);
+//        userRegistrationObject.CreateAccount(password, firstNameAdressInfo, lastNameAdressInfo, companyAddressInfoInfo, addressInfoInfo, stateAddressInfo, cityAddressInfo, postcodeAddressInfo, phoneNumberInfoInfo, birthday, birthMonth, birthYear, countryInfoInfoDropBox, "ACCOUNT CREATED!");
 //    }
-//    @When("i Click on Registration Button")
-//    public void i_click_on_registration_button() {
+//
+//    @When("I click on the Registration Button and Delete the Account")
+//    public void i_click_on_the_registration_button_and_delete_the_account() {
+//        // Write code here that turns the phrase above into concrete actions
+//        WebDriver driver = DriverManager.getDriver();
+//        delateAccountObj = new DelateAccountPage(driver);
+//        delateAccountObj.DeleteAccount();
+//    }
+//
+//    @When("I click on the Registration Button")
+//    public void i_click_on_the_registration_button() {
 //        // Write code here that turns the phrase above into concrete actions
 //    }
-//    @Then("Get the Succesful Registration Page")
-//    public void get_the_succesful_registration_page() {
+//
+//    @Then("Get the Successful Registration Page")
+//    public void get_the_successful_registration_page() {
+//        // Write code here that turns the phrase above into concrete actions
+//    }
+//
+//    @Then("I see an error message")
+//    public void i_see_an_error_message() {
 //        // Write code here that turns the phrase above into concrete actions
 //    }
 //}
-

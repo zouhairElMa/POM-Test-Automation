@@ -13,14 +13,57 @@ public class HomePage extends PageBase {
     }
     @FindBy(className = "fa-lock")
     WebElement LoginRegistrationPage;
-    @FindBy(css = "signup-form>h2")
-    WebElement SignupFormText;
+    @FindBy(css = ".left-sidebar>h2")
+    WebElement HomePageTitleAssertion;
 
     public void OpenLoginRegistrationPage()
     {
+        AssertionElement(HomePageTitleAssertion,"CATEGORY");
         click(LoginRegistrationPage);
     }
-    public void validateCheckAssertion(String actualValue){
-        ValidateCheckAssertion(SignupFormText,actualValue);
+
+    @FindBy(css = "a>b")
+    WebElement HomePageLogedInUserAssertion;
+
+    public void AssertionLogedInUser(String expectedText)
+    {
+        AssertionElement(HomePageLogedInUserAssertion,expectedText);
+    }
+
+    @FindBy(className = "fa-lock")
+    WebElement LogoutButton;
+
+    public void Logout()
+    {
+        click(LogoutButton);
+    }
+
+    @FindBy(linkText = "Contact us")
+    WebElement ContactUsButton;
+
+    @FindBy(css = "div.contact-form>h2")
+    WebElement ContactUsAssertion;
+
+    public void OpenContactUsPage()
+    {
+        click(ContactUsButton);
+        AssertionElement(ContactUsAssertion,"GET IN TOUCH");
+    }
+
+    @FindBy(linkText = "Test Cases")
+    WebElement TestCasePageButton;
+    @FindBy(css = ".text-center>b")
+    WebElement TestCasePageAssertion;
+    public void OpenTestCasePage()
+    {
+        click(TestCasePageButton);
+        AssertionElement(TestCasePageAssertion,"TEST CASES");
+    }
+
+    @FindBy (css = ".navbar-nav>li>[href=\"/products\"]")
+    WebElement ProductsPageButton;
+    public void OpenProductsPage()
+    {
+        click(ProductsPageButton);
     }
 }

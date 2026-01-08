@@ -1,9 +1,12 @@
 package TestPages;
 
+import Pages.DriverManager;
 import Pages.HomePage;
+import Pages.SignUpLoginPage;
 import Pages.UserRegistrationPages;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 import java.io.FileReader;
@@ -12,6 +15,7 @@ import java.io.IOException;
 public class TestRegistrationCSV extends TestBase{
     HomePage homeObj;
     UserRegistrationPages userRegObj;
+    SignUpLoginPage signUpLoginObj;
     // Cree un objet de CSVReader
     CSVReader reader;
     @Test
@@ -29,16 +33,16 @@ public class TestRegistrationCSV extends TestBase{
             String password = csvCell[1];
             String email = csvCell[2];
         }
-
-
+        WebDriver driver = DriverManager.getDriver(); // pour l'implementation du DriverManager singleton
         homeObj = new HomePage(driver);
         homeObj.OpenLoginRegistrationPage();
-        userRegObj = new UserRegistrationPages(driver);
-        userRegObj.SignUpUser("csdcs", "wikdsxdwok@fe.cow","dsfdsf");
+        signUpLoginObj = new SignUpLoginPage(driver);
+        signUpLoginObj.SignUpUser("csdcs", "wikdsxdwok@fe.cow", "New User Signup!");
 
         // RegistrationSteps
-
+        userRegObj = new UserRegistrationPages(driver);
         userRegObj.CreateAccount(
+                UserRegistrationPages.Gender.MALE,
                 "dwdw",
                 "dfdf",
                 "fdf",
@@ -52,6 +56,6 @@ public class TestRegistrationCSV extends TestBase{
                 "January",
                 "1987",
                 "India",
-                "sdfdsf");
+                "ACCOUNT CREATED!");
     }
 }
