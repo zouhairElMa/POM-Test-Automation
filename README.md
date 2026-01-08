@@ -230,32 +230,7 @@ Le projet est configuré pour s'intégrer facilement dans des pipelines CI/CD :
 - **TestNG** pour l'exécution et les rapports
 - **Configuration flexible** via profils Maven
 
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Pour contribuer :
-
-1. **Fork** le projet
-2. **Créer une branche** pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. **Commiter** vos changements (`git commit -m 'Add: Amazing Feature'`)
-4. **Pusher** vers la branche (`git push origin feature/AmazingFeature`)
-5. **Ouvrir une Pull Request**
-
-### 📝 Guidelines de Contribution
-- Suivre les conventions de code existantes
-- Ajouter des tests pour les nouvelles fonctionnalités
-- Documenter les changements dans le README
-- Respecter l'architecture POM établie
-
-## 🏆 Fonctionnalités Futures
-
-### 🔮 Roadmap
-- [ ] **API Testing** avec REST Assured
-- [ ] **Performance Testing** avec JMeter
-- [ ] **Mobile Testing** avec Appium
-- [ ] **Visual Testing** avec Selenium Visual
-- [ ] **CI/CD Pipeline** avec Jenkins/GitHub Actions
-
-### 💡 Améliorations Prévues
+## 💡 Améliorations Prévues
 - Intégration base de données pour données de test
 - Génération automatique de données de test
 - Rapports avancés avec graphiques
@@ -271,7 +246,7 @@ Les contributions sont les bienvenues ! Pour contribuer :
 - ✅ Architecture POM optimisée
 - ✅ Support ThreadLocal pour tests parallèles
 
-### Version 1.0 (Version initiale)
+## Version 1.0 (Version initiale)
 - ✅ Framework POM de base
 - ✅ Tests Cucumber basiques
 - ✅ Configuration Maven
@@ -289,7 +264,7 @@ Ce projet est sous **licence MIT** - voir le fichier [LICENSE](LICENSE) pour plu
 - 💼 **LinkedIn** : [Zouhair El Mattad](https://www.linkedin.com/in/zouhair-el-mattad)
 - 📊 **Documentation** : [Tests Analysis](https://docs.google.com/spreadsheets/d/18mKEhHWsQ2UGU84bZ22aSy5wcPJxQaMutFGm5U2aZfI/edit?usp=sharing)
 
-### 🎯 Expertise
+## 🎯 Expertise
 - **Test Automation** : Selenium, TestNG, Cucumber
 - **Design Patterns** : Page Object Model, Singleton
 - **Test Techniques** : ISTQB, Boîte Noire, BDD
