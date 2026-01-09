@@ -1,4 +1,4 @@
-# POM Test Automation Framework - Version Avancée 🚀
+# POM Test Automation
 
 Ce projet est un framework d'automatisation de tests avancé utilisant Selenium WebDriver avec le modèle Page Object Model (POM), intégrant des techniques de tests boîte noire conformes aux normes ISTQB.
 
@@ -58,7 +58,7 @@ POM-Test-Automation/
 └── pom.xml
 ```
 
-## 🏗️ Architecture Avancée
+## 🏗️ Architecture
 
 ### Pattern Singleton - DriverManager
 Le projet implémente un **DriverManager singleton** avec support ThreadLocal pour l'exécution parallèle des tests :
