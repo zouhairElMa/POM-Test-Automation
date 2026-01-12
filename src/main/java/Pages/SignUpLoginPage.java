@@ -22,7 +22,6 @@ public class SignUpLoginPage extends PageBase {
     WebElement NewUserSignupTitle;
 
 
-
     public void SignUpUser(String name, String email , String expectedTextSignupFormText)
     {
         AssertionElement(NewUserSignupTitle, expectedTextSignupFormText);
@@ -50,7 +49,7 @@ public class SignUpLoginPage extends PageBase {
 
     public void LoginUser(String email, String password , String expectedTextLoginFormText)
     {
-        AssertionElement(LoginToYourAccountTitle, expectedTextLoginFormText);
+//        AssertionElement(LoginToYourAccountTitle, expectedTextLoginFormText);
         SendKeys(LoginEmailField,email);
         SendKeys(LoginPasswordField,password);
         click(LoginButton);

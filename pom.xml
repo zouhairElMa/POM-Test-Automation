@@ -64,6 +64,17 @@
             <version>35.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.8.2</version>
+        </dependency>
 
     </dependencies>
 </project>

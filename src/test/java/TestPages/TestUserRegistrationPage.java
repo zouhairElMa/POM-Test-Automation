@@ -2,6 +2,7 @@ package TestPages;
 
 import Pages.DriverManager;
 import Pages.UserRegistrationPages;
+import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 

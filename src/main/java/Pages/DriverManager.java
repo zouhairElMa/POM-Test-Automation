@@ -1,8 +1,8 @@
 package Pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverManager {
 
@@ -14,7 +14,11 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
-            WebDriver driver = new EdgeDriver();
+            ChromeOptions options = new ChromeOptions();
+            // Chemin vers l'exécutable Brave (emplacement par défaut sur Windows)
+            options.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
+
+            WebDriver driver = new ChromeDriver(options);
             driver.manage().window().maximize();
             driverThreadLocal.set(driver);
         }

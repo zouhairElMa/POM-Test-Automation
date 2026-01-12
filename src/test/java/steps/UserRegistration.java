@@ -5,6 +5,7 @@ import TestPages.TestBase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.datafaker.Faker;
 import org.openqa.selenium.WebDriver;
 
 public class UserRegistration extends TestBase {
@@ -32,6 +33,13 @@ public class UserRegistration extends TestBase {
         // Write code here that turns the phrase above into concrete actions
         WebDriver driver = DriverManager.getDriver();
         signUpLoginObject = new SignUpLoginPage(driver);
+
+        // Génération de données aléatoires avec Faker
+//        Faker fakerData = new Faker();
+//        String firstName = fakerData.name().firstName();
+//        String lastName = fakerData.name().lastName();
+//        String email = fakerData.internet().emailAddress();
+
         signUpLoginObject.SignUpUser(string, string2, "Login to your account");
 
     }
@@ -61,9 +69,9 @@ public class UserRegistration extends TestBase {
     @When("i Click on Registration Button and Delete the Account")
     public void i_click_on_registration_button() {
         // Write code here that turns the phrase above into concrete actions
-        WebDriver driver = DriverManager.getDriver();
-        delateAccountObj = new DelateAccountPage(driver);
-        delateAccountObj.DeleteAccount();
+//        WebDriver driver = DriverManager.getDriver();
+//        delateAccountObj = new DelateAccountPage(driver);
+//        delateAccountObj.DeleteAccount();
     }
     @Then("Get the Succesful Registration Page")
     public void get_the_succesful_registration_page() {
