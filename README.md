@@ -246,22 +246,6 @@ Les contributions sont les bienvenues ! Pour contribuer :
 - Documenter les changements dans le README
 - Respecter l'architecture POM établie
 
-## 🏆 Fonctionnalités Futures
-
-### 🔮 Roadmap
-- [ ] **API Testing** avec REST Assured
-- [ ] **Performance Testing** avec JMeter
-- [ ] **Mobile Testing** avec Appium
-- [ ] **Visual Testing** avec Selenium Visual
-- [ ] **CI/CD Pipeline** avec Jenkins/GitHub Actions
-
-### 💡 Améliorations Prévues
-- Intégration base de données pour données de test
-- Génération automatique de données de test
-- Rapports avancés avec graphiques
-- Support multi-langues
-- Configuration cloud (Selenium Grid)
-
 ## 📄 Changelog
 
 ### Version 2.0 (Janvier 2026)
