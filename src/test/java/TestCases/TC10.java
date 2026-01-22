@@ -3,23 +3,18 @@ package TestCases;
 import Pages.DriverManager;
 import Pages.HomePage;
 import TestPages.TestBase;
-import TestPages.TestContactUsPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-public class TC6 extends TestBase {
-    HomePage homeObj;
-    TestContactUsPage testContactUsPageObj;
-    @Test
+public class TC10 extends TestBase {
 
-    public void TestContactUsPage() {
+    HomePage homeObj;
+
+    @Test
+    public void VerifySubscriptionInHomePage() {
         WebDriver driver = DriverManager.getDriver(); // pour l'implementation du DriverManager singleton
         homeObj = new HomePage(driver);
-        homeObj.OpenContactUsPage();
-        testContactUsPageObj = new TestContactUsPage();
-        testContactUsPageObj.testContactUsPage();
-        homeObj.OpenHomePage();
         homeObj.HomePageTitleAssertion("CATEGORY");
-
+        homeObj.VerifySubscriptionInHomePage("SUBSCRIPTION", "SUBSCRIPTION@kjo.com", "You have been successfully subscribed!");
     }
 }

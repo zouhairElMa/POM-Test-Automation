@@ -2,27 +2,61 @@
 
 Ce projet est un framework d'automatisation de tests avancé utilisant Selenium WebDriver avec le modèle Page Object Model (POM), intégrant des techniques de tests boîte noire conformes aux normes ISTQB.
 
+## 🆕 Nouveautés de cette version (Branche feature/brave-browser-reporting)
+
+### 🌐 Changement de Navigateur : Brave Browser
+- **Navigateur par défaut changé** de Microsoft Edge vers **Brave Browser**
+- **Avantage principal** : Blocage automatique des publicités du site web testé
+- **Délai d'attente de 5 secondes** implémenté pour permettre à Brave de détecter et bloquer les publicités
+
+### 📊 Amélioration du Reporting Cucumber
+- Mise à jour vers **Cucumber Reporting 5.8.2** (nouvelle version)
+- Génération de rapports HTML avancés avec `net.masterthought:cucumber-reporting`
+- Rapports timeline interactifs disponibles dans `target/cucumber-timeline/`
+- Rapports HTML détaillés dans `target/cucumber-html-reports/`
+
+### 🐛 Documentation des Bugs
+- **Nouveau fichier** : `BugRepport_TC1.pdf` - Rapport de bugs détaillé pour le premier cas de test
+- Respect des normes de documentation de bugs (Priorité, Sévérité, Steps to Reproduce, etc.)
+
+### 🧪 5 Nouveaux Cas de Tests Ajoutés
+| Test Case | Description | Fonctionnalité |
+|-----------|-------------|----------------|
+| **TC9** | Recherche de produits | Validation de la fonctionnalité de recherche |
+| **TC10** | Subscription Homepage | Vérification de l'inscription newsletter sur la page d'accueil |
+| **TC11** | Subscription Cart Page | Vérification de l'inscription newsletter sur la page panier |
+| **TC12** | Ajout de produits au panier | Validation de l'ajout multiple de produits |
+| **TC13** | Quantité produit dans panier | Vérification de la quantité après ajout du même produit |
+
+### 📄 Nouvelle Page Object : CartPage
+- Classe `CartPage.java` pour gérer les éléments de la page panier
+- Méthodes de vérification des produits ajoutés, quantités, prix et totaux
+
 ## 🚀 Technologies utilisées
 
 - **Java 17** - Langage de programmation
 - **Selenium WebDriver 4.16.1** - Automatisation des tests web
 - **Maven** - Gestion des dépendances et build
-- **Cucumber** - Tests BDD (Behavior Driven Development)
-- **TestNG** - Framework de tests et rapports
+- **Cucumber 7.15.0** - Tests BDD (Behavior Driven Development)
+- **Cucumber Reporting 5.8.2** - Rapports avancés
+- **TestNG 7.10.2** - Framework de tests et rapports
 - **AssertJ** - Assertions fluides et expressives
-- **WebDriverManager** - Gestion automatique des drivers
+- **WebDriverManager 6.3.3** - Gestion automatique des drivers
+- **Brave Browser** - Navigateur avec blocage de publicités intégré
 
 ## 📁 Structure du projet
 
 ```
 POM-Test-Automation/
+├── BugRepport_TC1.pdf                       # Rapport de bugs TC1
 ├── src/
 │   ├── main/
 │   │   └── java/
 │   │       └── Pages/
+│   │           ├── CartPage.java            # NOUVEAU - Page Panier
 │   │           ├── ContactUsPage.java
 │   │           ├── DelateAccountPage.java
-│   │           ├── DriverManager.java        # Singleton Pattern
+│   │           ├── DriverManager.java       # Modifié - Brave Browser
 │   │           ├── HomePage.java
 │   │           ├── PageBase.java            # Classe base commune
 │   │           ├── ProductsPage.java
@@ -37,7 +71,7 @@ POM-Test-Automation/
 │           │   └── TestRunner.java
 │           ├── steps/
 │           │   └── UserRegistration.java
-│           ├── TestCases/                    # 8 cas de tests isolés
+│           ├── TestCases/                    # 13 cas de tests (5 nouveaux)
 │           │   ├── TC1.java                  # Enregistrement + Suppression
 │           │   ├── TC2.java                  # Login valide
 │           │   ├── TC3.java                  # Login invalide
@@ -45,7 +79,12 @@ POM-Test-Automation/
 │           │   ├── TC5.java                  # Email existant
 │           │   ├── TC6.java                  # Contact Us
 │           │   ├── TC7.java                  # Page Test Cases
-│           │   └── TC8.java                  # Page Products
+│           │   ├── TC8.java                  # Page Products
+│           │   ├── TC9.java                  # NOUVEAU - Recherche produits
+│           │   ├── TC10.java                 # NOUVEAU - Subscription Home
+│           │   ├── TC11.java                 # NOUVEAU - Subscription Cart
+│           │   ├── TC12.java                 # NOUVEAU - Ajout produits
+│           │   └── TC13.java                 # NOUVEAU - Quantité panier
 │           └── TestPages/
 │               ├── TestBase.java
 │               ├── TestContactUsPage.java
@@ -54,14 +93,17 @@ POM-Test-Automation/
 │               ├── TestRegistrationCSV.java
 │               ├── TestSignUpLoginPage.java
 │               └── TestUserRegistrationPage.java
+├── target/
+│   ├── cucumber-html-reports/               # Rapports HTML Cucumber
+│   └── cucumber-timeline/                   # Timeline interactive
 ├── testng.xml                               # Configuration TestNG
 └── pom.xml
 ```
 
 ## 🏗️ Architecture Avancée
 
-### Pattern Singleton - DriverManager
-Le projet implémente un **DriverManager singleton** avec support ThreadLocal pour l'exécution parallèle des tests :
+### Pattern Singleton - DriverManager avec Brave Browser
+Le projet implémente un **DriverManager singleton** avec support ThreadLocal pour l'exécution parallèle des tests, utilisant **Brave Browser** pour bloquer les publicités :
 
 ```java
 public class DriverManager {
@@ -69,7 +111,11 @@ public class DriverManager {
     
     public static WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
-            WebDriver driver = new EdgeDriver();
+            ChromeOptions options = new ChromeOptions();
+            // Chemin vers l'exécutable Brave (blocage des publicités)
+            options.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
+            
+            WebDriver driver = new ChromeDriver(options);
             driver.manage().window().maximize();
             driverThreadLocal.set(driver);
         }
@@ -85,13 +131,13 @@ public class DriverManager {
 - **Réutilisabilité** : Méthodes communes partagées entre toutes les pages
 
 ### Architecture de Tests Modulaire
-- **TestCases** : 8 cas de tests isolés et indépendants
+- **TestCases** : 13 cas de tests isolés et indépendants
 - **TestPages** : Classes de tests réutilisables
 - **TestBase** : Configuration commune pour tous les tests
 
-## ✨ Nouvelles Fonctionnalités
+## ✨ Fonctionnalités Complètes
 
-### 📋 8 Cas de Tests Complets
+### 📋 13 Cas de Tests Complets
 | Test Case | Description | Objectif |
 |-----------|-------------|----------|
 | **TC1** | Enregistrement + Suppression | Test end-to-end complet |
@@ -102,6 +148,11 @@ public class DriverManager {
 | **TC6** | Page Contact Us | Navigation et formulaire |
 | **TC7** | Page Test Cases | Validation contenu |
 | **TC8** | Page Products | Catalogue produits |
+| **TC9** | Recherche de produits | Fonctionnalité de recherche |
+| **TC10** | Subscription Homepage | Inscription newsletter (accueil) |
+| **TC11** | Subscription Cart Page | Inscription newsletter (panier) |
+| **TC12** | Ajout produits au panier | Ajout multiple de produits |
+| **TC13** | Quantité produit dans panier | Vérification quantité |
 
 ### 🧪 Tests BDD Conformes ISTQB
 Le fichier `.feature` intègre des techniques de tests boîte noire avancées :
@@ -126,8 +177,10 @@ Analyse détaillée disponible : [Tests Boîte Noire - Google Sheets](https://do
 
 - **Java JDK 17** ou supérieur
 - **Maven 3.8+** 
-- **Edge/Chrome/Firefox** browser
+- **Brave Browser** (navigateur par défaut - blocage des publicités)
 - **Git** pour le clonage du repository
+
+> **Note** : Le chemin par défaut de Brave est `C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe`. Modifiez le chemin dans `DriverManager.java` si nécessaire.
 
 ## 🔧 Installation
 
@@ -184,13 +237,16 @@ mvn test -DthreadCount=3 -Dparallel=methods
 
 ### 📈 Rapports Générés
 - **TestNG Reports** : `target/surefire-reports/index.html`
-- **Cucumber Reports** : `target/cucumber-html-report.html`
+- **Cucumber HTML Reports** : `target/cucumber-html-reports/` (nouveau reporting avancé)
+- **Cucumber Timeline** : `target/cucumber-timeline/index.html` (timeline interactive)
+- **Cucumber JSON** : `target/cucumber-report.json`
 - **Logs détaillés** : Console et fichiers de logs
 
 ### 📋 Métriques de Qualité
-- **Couverture fonctionnelle** : 8 cas de tests critiques
+- **Couverture fonctionnelle** : 13 cas de tests critiques
 - **Techniques ISTQB** : BVA, Partitions d'équivalence, États
 - **Assertions robustes** : Validations multiples par test
+- **Documentation bugs** : Rapport PDF disponible
 
 ## 🎯 Cas d'Usage
 
@@ -246,27 +302,21 @@ Les contributions sont les bienvenues ! Pour contribuer :
 - Documenter les changements dans le README
 - Respecter l'architecture POM établie
 
-## 🏆 Fonctionnalités Futures
-
-### 🔮 Roadmap
-- [ ] **API Testing** avec REST Assured
-- [ ] **Performance Testing** avec JMeter
-- [ ] **Mobile Testing** avec Appium
-- [ ] **Visual Testing** avec Selenium Visual
-- [ ] **CI/CD Pipeline** avec Jenkins/GitHub Actions
-
-### 💡 Améliorations Prévues
-- Intégration base de données pour données de test
-- Génération automatique de données de test
-- Rapports avancés avec graphiques
-- Support multi-langues
-- Configuration cloud (Selenium Grid)
 
 ## 📄 Changelog
 
+### Version 3.0 (Janvier 2026) - feature/brave-browser-reporting
+- ✅ Migration vers **Brave Browser** pour le blocage des publicités
+- ✅ Délai d'attente de 5 secondes pour la détection des publicités
+- ✅ Intégration **Cucumber Reporting 5.8.2** (rapports HTML avancés)
+- ✅ 5 nouveaux cas de tests (TC9 à TC13)
+- ✅ Nouvelle **CartPage** pour la gestion du panier
+- ✅ **Rapport de bugs PDF** pour TC1 (BugRepport_TC1.pdf)
+- ✅ Rapports timeline interactifs
+
 ### Version 2.0 (Janvier 2026)
 - ✅ Implémentation DriverManager Singleton
-- ✅ 8 nouveaux cas de tests isolés
+- ✅ 8 cas de tests isolés
 - ✅ Tests BDD conformes ISTQB
 - ✅ Architecture POM optimisée
 - ✅ Support ThreadLocal pour tests parallèles

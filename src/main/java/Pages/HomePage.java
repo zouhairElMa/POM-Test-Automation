@@ -13,8 +13,6 @@ public class HomePage extends PageBase {
     }
     @FindBy(className = "fa-lock")
     WebElement LoginRegistrationPage;
-    @FindBy(css = ".left-sidebar>h2")
-    WebElement HomePageTitleAssertion;
 
     public void OpenLoginRegistrationPage()
     {
@@ -65,5 +63,43 @@ public class HomePage extends PageBase {
     public void OpenProductsPage()
     {
         click(ProductsPageButton);
+    }
+
+    @FindBy(className = "fa-home")
+    WebElement HomeButton;
+    public void OpenHomePage()
+    {
+        click(HomeButton);
+    }
+
+    @FindBy(css = ".left-sidebar>h2")
+    WebElement HomePageTitleAssertion;
+
+    public void HomePageTitleAssertion(String expectedText)
+    {
+        AssertionElement(HomePageTitleAssertion,expectedText);
+    }
+
+    @FindBy(css = ".single-widget>h2")
+    WebElement SubscriptionTitleAssertion;
+    @FindBy(id = "susbscribe_email")
+    WebElement SubscriptionEmailTextBox;
+    @FindBy(id = "subscribe")
+    WebElement SubscriptionButton;
+    @FindBy(css = ".alert-success.alert")
+    WebElement SubscriptionSuccessMessage;
+
+    public void VerifySubscriptionInHomePage(String expectedText, String Email , String successMessage) {
+        AssertionElement(SubscriptionTitleAssertion, expectedText);
+        SendKeys(SubscriptionEmailTextBox, Email);
+        click(SubscriptionButton);
+        AssertionElement(SubscriptionSuccessMessage, successMessage);
+    }
+
+    @FindBy(className = "fa-shopping-cart")
+    WebElement CartPageButton;
+    public void CartPageOpen()
+    {
+        click(CartPageButton);
     }
 }

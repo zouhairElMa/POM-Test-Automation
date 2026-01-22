@@ -69,9 +69,9 @@ public class UserRegistration extends TestBase {
     @When("i Click on Registration Button and Delete the Account")
     public void i_click_on_registration_button() {
         // Write code here that turns the phrase above into concrete actions
-//        WebDriver driver = DriverManager.getDriver();
-//        delateAccountObj = new DelateAccountPage(driver);
-//        delateAccountObj.DeleteAccount();
+        WebDriver driver = DriverManager.getDriver();
+        delateAccountObj = new DelateAccountPage(driver);
+        delateAccountObj.DeleteAccount();
     }
     @Then("Get the Succesful Registration Page")
     public void get_the_succesful_registration_page() {
@@ -89,88 +89,3 @@ public class UserRegistration extends TestBase {
         // Write code here that turns the phrase above into concrete actions
     }
 }
-
-
-
-
-//package steps;
-//
-//import Pages.*;
-//import io.cucumber.java.en.Given;
-//import io.cucumber.java.en.Then;
-//import io.cucumber.java.en.When;
-//import org.openqa.selenium.WebDriver;
-//
-//public class UserRegistration {
-//
-//    HomePage homeObject;
-//    UserRegistrationPages userRegistrationObject;
-//    SignUpLoginPage signUpLoginObject;
-//    DelateAccountPage delateAccountObj;
-//
-//    @Given("the user is on the Home\\/Login Page")
-//    public void the_user_is_on_the_home_login_page() {
-//        // Write code here that turns the phrase above into concrete actions
-//
-//    }
-//
-//    @When("I click on the Register Link")
-//    public void i_click_on_the_register_link() {
-//        // Write code here that turns the phrase above into concrete actions
-//        WebDriver driver = DriverManager.getDriver();
-//        homeObject = new HomePage(driver);
-//        homeObject.OpenLoginRegistrationPage();
-//    }
-//
-//    @When("I fill the {string}, {string}")
-//    public void i_fill_the(String userName, String email) {
-//        // Write code here that turns the phrase above into concrete actions
-//        WebDriver driver = DriverManager.getDriver();
-//        signUpLoginObject = new SignUpLoginPage(driver);
-//        signUpLoginObject.SignUpUser(userName, email, "New User Signup!");
-//    }
-//
-//    @When("Move to the Next Page Registration")
-//    public void move_to_the_next_page_registration() {
-//        // Write code here that turns the phrase above into concrete actions
-//
-//    }
-//
-////******************************************************************************************************************************************************************************
-//
-//    @When("The user is in the Registration Page")
-//    public void the_user_is_in_the_registration_page() {
-//        // Write code here that turns the phrase above into concrete actions
-//    }
-//
-//    @When("I fill all the Registration Form {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
-//    public void i_fill_all_the_registration_form(String password, String firstNameAdressInfo, String lastNameAdressInfo, String companyAddressInfoInfo, String addressInfoInfo, String stateAddressInfo, String cityAddressInfo, String postcodeAddressInfo, String phoneNumberInfoInfo, String birthday, String birthMonth, String birthYear, String countryInfoInfoDropBox) {
-//        // Write code here that turns the phrase above into concrete actions
-//        WebDriver driver = DriverManager.getDriver();
-//        userRegistrationObject = new UserRegistrationPages(driver);
-//        userRegistrationObject.CreateAccount(password, firstNameAdressInfo, lastNameAdressInfo, companyAddressInfoInfo, addressInfoInfo, stateAddressInfo, cityAddressInfo, postcodeAddressInfo, phoneNumberInfoInfo, birthday, birthMonth, birthYear, countryInfoInfoDropBox, "ACCOUNT CREATED!");
-//    }
-//
-//    @When("I click on the Registration Button and Delete the Account")
-//    public void i_click_on_the_registration_button_and_delete_the_account() {
-//        // Write code here that turns the phrase above into concrete actions
-//        WebDriver driver = DriverManager.getDriver();
-//        delateAccountObj = new DelateAccountPage(driver);
-//        delateAccountObj.DeleteAccount();
-//    }
-//
-//    @When("I click on the Registration Button")
-//    public void i_click_on_the_registration_button() {
-//        // Write code here that turns the phrase above into concrete actions
-//    }
-//
-//    @Then("Get the Successful Registration Page")
-//    public void get_the_successful_registration_page() {
-//        // Write code here that turns the phrase above into concrete actions
-//    }
-//
-//    @Then("I see an error message")
-//    public void i_see_an_error_message() {
-//        // Write code here that turns the phrase above into concrete actions
-//    }
-//}

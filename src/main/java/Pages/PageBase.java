@@ -50,5 +50,28 @@ public class PageBase {
         assertThat(element.isDisplayed()).isTrue();
     }
 
+    protected void PartialTextElementAssertion(WebElement element, String expectedText) {
+        assertThat(element.isDisplayed()).isTrue();
+        assertThat(element.getText()).contains(expectedText);
+    }
 
+    protected void allertAccept() {
+        driver.switchTo().alert().accept();
+    }
+
+    protected void allertAssertion(String expectedText) {
+        String alertText = driver.switchTo().alert().getText();
+        assertThat(alertText).isEqualTo(expectedText);
+    }
+
+    protected void hoverOverElement(WebElement element) {
+        org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+    protected void KeyboardUpButtonMultipleTimes(int times) {
+        org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+        for (int i = 0; i < times; i++) {
+            actions.sendKeys(org.openqa.selenium.Keys.ARROW_UP).perform();
+        }
+    }
 }

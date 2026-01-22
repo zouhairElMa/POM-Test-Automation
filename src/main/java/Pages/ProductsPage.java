@@ -50,11 +50,78 @@ public class ProductsPage extends PageBase{
 
     public void VerifyFirstProductDetailsElements(String expectedName, String expectedCategory, String expectedPrice, String expectedAvailability, String expectedCondition, String expectedBrand)
     {
-        AssertionElement(FirstProductTitleName, expectedName);
-        AssertionElement(FirstProductCategoryTitle, expectedCategory);
-        AssertionElement(FirstProductPriceTitle, expectedPrice);
-        AssertionElement(FirstProductAvailabilityTitle, expectedAvailability);
-        AssertionElement(FirstProductConditionTitle, expectedCondition);
-        AssertionElement(FirstProductBrandTitle, expectedBrand);
+        PartialTextElementAssertion(FirstProductTitleName, expectedName);
+        PartialTextElementAssertion(FirstProductCategoryTitle, expectedCategory);
+        PartialTextElementAssertion(FirstProductPriceTitle, expectedPrice);
+        PartialTextElementAssertion(FirstProductAvailabilityTitle, expectedAvailability);
+        PartialTextElementAssertion(FirstProductConditionTitle, expectedCondition);
+        PartialTextElementAssertion(FirstProductBrandTitle, expectedBrand);
     }
+
+    @FindBy(id = "search_product")
+    WebElement ProductSearchInput;
+    @FindBy(id = "submit_search")
+    WebElement SubmitSearchButton;
+
+    public void enterProductInSearchInput(String productName)
+    {
+        SendKeys(ProductSearchInput, productName);
+        click(SubmitSearchButton);
+    }
+
+    @FindBy(css = ".features_items>h2")
+    WebElement SearchProductsTitle;
+
+    public void VerifySearchProductsTitle(String expectedText)
+    {
+        AssertionElement(SearchProductsTitle, expectedText);
+    }
+
+    @FindBy(css = ".productinfo>[data-product-id=\"1\"]")
+    WebElement FirstAddToCartProductHoverElement;
+    @FindBy(css = ".overlay-content>[data-product-id=\"1\"]")
+    WebElement FirstProductAddToCartButton;
+
+    @FindBy(css = ".productinfo>[data-product-id=\"2\"]")
+    WebElement SecondAddToCartProductHoverElement;
+    @FindBy(css = ".overlay-content>[data-product-id=\"2\"]")
+    WebElement SecondProductAddToCartButton;
+
+    @FindBy(css = ".modal-footer>button")
+    WebElement ContinueShoppingButton;
+    @FindBy(css = "p>[href=\"/view_cart\"]")
+    WebElement ViewCartButton;
+
+    public void HoverFirstProductsAndClickAddToCartThenContinueButton()
+    {
+        hoverOverElement(FirstAddToCartProductHoverElement);
+        click(FirstProductAddToCartButton);
+        click(ContinueShoppingButton);
+    }
+    public void HoverSecondProductsAndClickAddToCartThenViewCartButton()
+    {
+        hoverOverElement(SecondAddToCartProductHoverElement);
+        click(SecondProductAddToCartButton);
+        click(ViewCartButton);
+    }
+    public void ClickViewCartButton()
+    {
+        click(ViewCartButton);
+    }
+
+    @FindBy(id = "quantity")
+    WebElement FirstProductQuantityInput;
+    public void QuantityIncreaseInFirstProductDetailsPage(int quantity)
+    {
+        click(FirstProductQuantityInput);
+        KeyboardUpButtonMultipleTimes(quantity);
+    }
+
+    @FindBy(css = "button>.fa-shopping-cart")
+    WebElement FirstProductAddToCartButtonInDetailsPage;
+    public void ClickAddToCartButtonInFirstProductDetailsPage()
+    {
+        click(FirstProductAddToCartButtonInDetailsPage);
+    }
+
 }

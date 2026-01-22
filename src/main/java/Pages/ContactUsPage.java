@@ -38,7 +38,9 @@ public class ContactUsPage extends PageBase {
         click(ContactUsSubmitButton);
     }
 
-    public void AssertContactUsSuccessMessage(String expectedText){
-        AssertionElement(ContactUsSuccessMessage, expectedText);
+    public void AssertContactUsSuccessMessage(String expectedText, String expectedText1){
+        allertAssertion(expectedText);
+        allertAccept();
+        PartialTextElementAssertion(ContactUsSuccessMessage, expectedText1);
     }
 }
