@@ -2,12 +2,13 @@ package TestPages;
 
 import Pages.DriverManager;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase extends AbstractTestNGCucumberTests {
 
+    @Step("Launch browser and navigate to url 'http://automationexercise.com'")
     @BeforeMethod
     public void startDriver() {
         DriverManager.getDriver().navigate().to("https://automationexercise.com/");
@@ -18,6 +19,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
         }
     }
 
+    @Step("Close browser")
     @AfterMethod
     public void stopDriver() {
         DriverManager.closeDriver();

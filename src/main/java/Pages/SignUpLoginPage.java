@@ -1,5 +1,6 @@
 package Pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,7 @@ public class SignUpLoginPage extends PageBase {
     WebElement NewUserSignupTitle;
 
 
+    @Step("Verify 'New User Signup!' is visible, enter name: {name} and email: {email}, then click 'Signup' button")
     public void SignUpUser(String name, String email , String expectedTextSignupFormText)
     {
         AssertionElement(NewUserSignupTitle, expectedTextSignupFormText);
@@ -34,6 +36,7 @@ public class SignUpLoginPage extends PageBase {
     @FindBy(css = ".login-form h2")
     WebElement LoginToYourAccountTitle;
 
+    @Step("Verify 'Login to your account' is visible")
     public void AssertionLoginToYourAccountTitle(String expectedText)
     {
         AssertionElement(LoginToYourAccountTitle, expectedText);
@@ -47,6 +50,7 @@ public class SignUpLoginPage extends PageBase {
     WebElement LoginButton;
 
 
+    @Step("Enter email: {email} and password, then click 'Login' button")
     public void LoginUser(String email, String password , String expectedTextLoginFormText)
     {
 //        AssertionElement(LoginToYourAccountTitle, expectedTextLoginFormText);
@@ -59,6 +63,7 @@ public class SignUpLoginPage extends PageBase {
     @FindBy(css = "form>[style=\"color: red;\"]")
     WebElement EmailOrPasswordIncorrectText;
 
+    @Step("Verify error 'Your email or password is incorrect!' is visible")
     public void AssertionEmailOrPasswordIncorrect(String expectedText)
     {
         AssertionElement(EmailOrPasswordIncorrectText, expectedText);
@@ -67,6 +72,7 @@ public class SignUpLoginPage extends PageBase {
     @FindBy(css = "form>[style=\"color: red;\"]")
     WebElement AssertionEmailAlreadyExistText;
 
+    @Step("Verify error 'Email Address already exist!' is visible")
     public void AssertionEmailAlreadyExist(String expectedText)
     {
         AssertionElement(AssertionEmailAlreadyExistText, expectedText);

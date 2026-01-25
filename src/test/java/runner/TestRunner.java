@@ -17,7 +17,8 @@ import java.util.List;
         plugin = {
                 "pretty",
                 "json:target/cucumber-report.json",
-                "timeline:target/cucumber-timeline"
+                "timeline:target/cucumber-timeline",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
         monochrome = true
 )

@@ -1,5 +1,6 @@
 package Pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,7 @@ public class DelateAccountPage extends PageBase {
     @FindBy(css = "[data-qa=\"continue-button\"]")
     WebElement ContinueButton;
 
+    @Step("Click 'Delete Account' button and verify 'ACCOUNT DELETED!' is visible, then click 'Continue' button")
     public void DeleteAccount()
     {
         click(DeleteAccountButton);

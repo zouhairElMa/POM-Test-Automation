@@ -1,5 +1,6 @@
 package Pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,6 +82,7 @@ public class UserRegistrationPages extends  PageBase {
     @FindBy(css = "[data-qa=\"account-created\"]>b")
     WebElement AccountCreated;
 
+    @Step("Fill account information: Title, Name, Email, Password, Date of birth, and address details, then click 'Create Account' button")
     public void CreateAccount(
                                Gender gender,
                                String password,

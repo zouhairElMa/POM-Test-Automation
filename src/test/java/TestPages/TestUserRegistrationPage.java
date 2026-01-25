@@ -2,7 +2,7 @@ package TestPages;
 
 import Pages.DriverManager;
 import Pages.UserRegistrationPages;
-import net.datafaker.Faker;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
@@ -10,6 +10,7 @@ public class TestUserRegistrationPage extends TestBase{
 
     UserRegistrationPages userRegistrationPagesObj;
 
+    @Step("Fill account information: Title, Name, Password, Date of birth and Address details, then click 'Create Account' button")
     @Test
     public void testuserregistrationdetails() {
         WebDriver driver = DriverManager.getDriver(); // pour l'implementation du DriverManager singleton

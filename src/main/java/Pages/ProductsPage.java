@@ -1,5 +1,6 @@
 package Pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ public class ProductsPage extends PageBase{
     @FindBy(css = ".features_items>h2")
     WebElement AllProductsTitle;
 
+    @Step("Verify user is navigated to ALL PRODUCTS page with title: {expectedText}")
     public void VerifyAllProductsTitle(String expectedText)
     {
         AssertionElement(AllProductsTitle, expectedText);
@@ -21,6 +23,7 @@ public class ProductsPage extends PageBase{
     @FindBy(css = ".col-sm-4>.product-image-wrapper>.single-products>div>[data-product-id=\"3\"]")
     WebElement ThirdAddToCartButton;
 
+    @Step("Verify the products list is visible")
     public void  VerifyThirdAddToCartButtonIsPresent()
     {
         ElementIsDisplayed(ThirdAddToCartButton);
@@ -29,6 +32,7 @@ public class ProductsPage extends PageBase{
     @FindBy(css = ".choose>.nav-justified>li>[href=\"/product_details/1\"]")
     WebElement FirstViewProductButton;
 
+    @Step("Click on 'View Product' of first product")
     public void  OpenFirstViewProductPage()
     {
         click(FirstViewProductButton);
@@ -48,6 +52,7 @@ public class ProductsPage extends PageBase{
     @FindBy (css = ".product-information>p:nth-of-type(4)")
     WebElement FirstProductBrandTitle;
 
+    @Step("Verify product detail is visible: product name, category, price, availability, condition, brand")
     public void VerifyFirstProductDetailsElements(String expectedName, String expectedCategory, String expectedPrice, String expectedAvailability, String expectedCondition, String expectedBrand)
     {
         PartialTextElementAssertion(FirstProductTitleName, expectedName);
@@ -63,6 +68,7 @@ public class ProductsPage extends PageBase{
     @FindBy(id = "submit_search")
     WebElement SubmitSearchButton;
 
+    @Step("Enter product name: {productName} in search input and click search button")
     public void enterProductInSearchInput(String productName)
     {
         SendKeys(ProductSearchInput, productName);
@@ -72,6 +78,7 @@ public class ProductsPage extends PageBase{
     @FindBy(css = ".features_items>h2")
     WebElement SearchProductsTitle;
 
+    @Step("Verify 'SEARCHED PRODUCTS' is visible")
     public void VerifySearchProductsTitle(String expectedText)
     {
         AssertionElement(SearchProductsTitle, expectedText);
@@ -92,18 +99,23 @@ public class ProductsPage extends PageBase{
     @FindBy(css = "p>[href=\"/view_cart\"]")
     WebElement ViewCartButton;
 
+    @Step("Hover over first product and click 'Add to cart', then click 'Continue Shopping' button")
     public void HoverFirstProductsAndClickAddToCartThenContinueButton()
     {
         hoverOverElement(FirstAddToCartProductHoverElement);
         click(FirstProductAddToCartButton);
         click(ContinueShoppingButton);
     }
+
+    @Step("Hover over second product and click 'Add to cart', then click 'View Cart' button")
     public void HoverSecondProductsAndClickAddToCartThenViewCartButton()
     {
         hoverOverElement(SecondAddToCartProductHoverElement);
         click(SecondProductAddToCartButton);
         click(ViewCartButton);
     }
+
+    @Step("Click 'View Cart' button")
     public void ClickViewCartButton()
     {
         click(ViewCartButton);
@@ -111,6 +123,8 @@ public class ProductsPage extends PageBase{
 
     @FindBy(id = "quantity")
     WebElement FirstProductQuantityInput;
+
+    @Step("Increase quantity to {quantity}")
     public void QuantityIncreaseInFirstProductDetailsPage(int quantity)
     {
         click(FirstProductQuantityInput);
@@ -119,6 +133,8 @@ public class ProductsPage extends PageBase{
 
     @FindBy(css = "button>.fa-shopping-cart")
     WebElement FirstProductAddToCartButtonInDetailsPage;
+
+    @Step("Click 'Add to cart' button in product details page")
     public void ClickAddToCartButtonInFirstProductDetailsPage()
     {
         click(FirstProductAddToCartButtonInDetailsPage);

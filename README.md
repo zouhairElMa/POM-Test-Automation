@@ -2,35 +2,75 @@
 
 Ce projet est un framework d'automatisation de tests avancé utilisant Selenium WebDriver avec le modèle Page Object Model (POM), intégrant des techniques de tests boîte noire conformes aux normes ISTQB.
 
-## 🆕 Nouveautés de cette version (Branche feature/brave-browser-reporting)
+## 🆕 Nouveautés de cette version (Branche feature/allure-reporting-integration)
 
 ### 🌐 Changement de Navigateur : Brave Browser
 - **Navigateur par défaut changé** de Microsoft Edge vers **Brave Browser**
 - **Avantage principal** : Blocage automatique des publicités du site web testé
 - **Délai d'attente de 5 secondes** implémenté pour permettre à Brave de détecter et bloquer les publicités
+- Configuration dans `DriverManager.java` avec ChromeOptions pointant vers l'exécutable Brave
 
-### 📊 Amélioration du Reporting Cucumber
+### 📊 Intégration Complète du Reporting Allure
+- **Allure TestNG 2.25.0** : Framework de reporting avancé avec visualisation interactive
+- **Allure Cucumber7 JVM 2.25.0** : Intégration Allure pour les tests Cucumber BDD
+- **AspectJ Weaver 1.9.22** : Support des annotations @Step pour la traçabilité détaillée des étapes
+- **Configuration Maven Surefire** : AspectJ agent configuré pour l'instrumentation des annotations
+
+#### 🎯 Annotations Allure Implémentées sur les 13 Cas de Tests
+Chaque cas de test (TC1 à TC13) est enrichi avec des métadonnées Allure complètes :
+- **@Description** : Description détaillée du cas de test avec les étapes de test
+- **@Epic** : Catégorisation par Epic (User Management, Products, Shopping Cart, etc.)
+- **@Feature** : Fonctionnalité testée (User Registration, Login, Logout, Product Search, etc.)
+- **@Story** : Histoire utilisateur (Valid Registration, Invalid Login, etc.)
+- **@Owner** : Propriétaire du test ("QA Team")
+- **@Severity** : Niveau de sévérité (CRITICAL, NORMAL, MINOR) selon l'importance
+- **@Link** : Lien vers l'application testée
+- **@TmsLink** : Lien vers le système de gestion de tests (TC-001 à TC-013)
+
+#### 🔍 Annotations @Step pour la Traçabilité
+Toutes les méthodes des Page Objects sont annotées avec **@Step** pour une traçabilité complète :
+- **PageBase.java** : Méthodes communes (click, SendKeys, AssertionElement, etc.)
+- **HomePage.java** : Navigation et vérifications de la page d'accueil
+- **SignUpLoginPage.java** : Actions d'inscription et de connexion
+- **UserRegistrationPages.java** : Étapes du formulaire d'enregistrement
+- **ProductsPage.java** : Actions sur la page produits
+- **CartPage.java** : Gestion du panier d'achats
+- **ContactUsPage.java** : Formulaire de contact
+- **Toutes les autres pages** : Chaque action est tracée dans le rapport Allure
+
+### 📈 Amélioration du Reporting Cucumber
 - Mise à jour vers **Cucumber Reporting 5.8.2** (nouvelle version)
 - Génération de rapports HTML avancés avec `net.masterthought:cucumber-reporting`
 - Rapports timeline interactifs disponibles dans `target/cucumber-timeline/`
 - Rapports HTML détaillés dans `target/cucumber-html-reports/`
+- **145 tests Cucumber** exécutés avec reporting complet
 
 ### 🐛 Documentation des Bugs
 - **Nouveau fichier** : `BugRepport_TC1.pdf` - Rapport de bugs détaillé pour le premier cas de test
-- Respect des normes de documentation de bugs (Priorité, Sévérité, Steps to Reproduce, etc.)
+- Respect des normes de documentation de bugs (Priorité, Sévérité, Steps to Reproduce, Expected vs Actual, etc.)
+- Documentation conforme aux standards de l'industrie
 
-### 🧪 5 Nouveaux Cas de Tests Ajoutés
-| Test Case | Description | Fonctionnalité |
-|-----------|-------------|----------------|
-| **TC9** | Recherche de produits | Validation de la fonctionnalité de recherche |
-| **TC10** | Subscription Homepage | Vérification de l'inscription newsletter sur la page d'accueil |
-| **TC11** | Subscription Cart Page | Vérification de l'inscription newsletter sur la page panier |
-| **TC12** | Ajout de produits au panier | Validation de l'ajout multiple de produits |
-| **TC13** | Quantité produit dans panier | Vérification de la quantité après ajout du même produit |
+### 🧪 13 Cas de Tests Complets avec Métadonnées Allure
+| Test Case | Epic | Feature | Severity | Description |
+|-----------|------|---------|----------|-------------|
+| **TC1** | User Management | User Registration | CRITICAL | Enregistrement complet + suppression compte |
+| **TC2** | User Management | User Login | CRITICAL | Login avec identifiants valides |
+| **TC3** | User Management | User Login | NORMAL | Login avec identifiants invalides |
+| **TC4** | User Management | User Logout | CRITICAL | Déconnexion utilisateur |
+| **TC5** | User Management | User Registration | NORMAL | Enregistrement avec email existant |
+| **TC6** | Customer Support | Contact Us Form | NORMAL | Formulaire de contact avec upload fichier |
+| **TC7** | Navigation | Test Cases Page | MINOR | Navigation vers page Test Cases |
+| **TC8** | Products | Product Catalog | NORMAL | Vérification catalogue et détails produit |
+| **TC9** | Products | Product Search | NORMAL | Recherche de produits |
+| **TC10** | Subscription | Home Page Subscription | MINOR | Inscription newsletter page d'accueil |
+| **TC11** | Subscription | Cart Page Subscription | MINOR | Inscription newsletter page panier |
+| **TC12** | Shopping Cart | Add Products to Cart | CRITICAL | Ajout multiple de produits au panier |
+| **TC13** | Shopping Cart | Cart Quantity Verification | CRITICAL | Vérification quantité produit dans panier |
 
 ### 📄 Nouvelle Page Object : CartPage
 - Classe `CartPage.java` pour gérer les éléments de la page panier
 - Méthodes de vérification des produits ajoutés, quantités, prix et totaux
+- Annotations @Step pour chaque action dans le rapport Allure
 
 ## 🚀 Technologies utilisées
 
@@ -38,11 +78,15 @@ Ce projet est un framework d'automatisation de tests avancé utilisant Selenium 
 - **Selenium WebDriver 4.16.1** - Automatisation des tests web
 - **Maven** - Gestion des dépendances et build
 - **Cucumber 7.15.0** - Tests BDD (Behavior Driven Development)
-- **Cucumber Reporting 5.8.2** - Rapports avancés
-- **TestNG 7.10.2** - Framework de tests et rapports
+- **Cucumber Reporting 5.8.2** - Rapports HTML avancés
+- **Allure TestNG 2.25.0** - Framework de reporting interactif avec visualisation avancée
+- **Allure Cucumber7 JVM 2.25.0** - Intégration Allure pour tests BDD
+- **AspectJ Weaver 1.9.22** - Instrumentation pour annotations @Step
+- **TestNG 7.10.2** - Framework de tests et exécution parallèle
 - **AssertJ** - Assertions fluides et expressives
 - **WebDriverManager 6.3.3** - Gestion automatique des drivers
 - **Brave Browser** - Navigateur avec blocage de publicités intégré
+- **DataFaker 2.5.3** - Génération de données de test réalistes
 
 ## 📁 Structure du projet
 
@@ -236,17 +280,33 @@ mvn test -DthreadCount=3 -Dparallel=methods
 ## 📊 Rapports et Résultats
 
 ### 📈 Rapports Générés
+- **Allure Reports** : `target/allure-results/` (résultats JSON)
+  - Rapports interactifs avec graphiques, timeline, tendances
+  - Traçabilité complète des étapes via @Step
+  - Métadonnées enrichies (Epic, Feature, Story, Severity, Owner)
+  - Génération du rapport : `allure serve target/allure-results`
 - **TestNG Reports** : `target/surefire-reports/index.html`
 - **Cucumber HTML Reports** : `target/cucumber-html-reports/` (nouveau reporting avancé)
 - **Cucumber Timeline** : `target/cucumber-timeline/index.html` (timeline interactive)
 - **Cucumber JSON** : `target/cucumber-report.json`
 - **Logs détaillés** : Console et fichiers de logs
 
+### 🎯 Génération des Rapports Allure
+```bash
+# Générer et ouvrir le rapport Allure après exécution
+mvn clean test
+allure serve target/allure-results
+
+# Générer le rapport dans un dossier
+allure generate target/allure-results -o target/allure-report --clean
+```
+
 ### 📋 Métriques de Qualité
-- **Couverture fonctionnelle** : 13 cas de tests critiques
+- **Couverture fonctionnelle** : 13 cas de tests critiques avec métadonnées Allure
 - **Techniques ISTQB** : BVA, Partitions d'équivalence, États
 - **Assertions robustes** : Validations multiples par test
-- **Documentation bugs** : Rapport PDF disponible
+- **Documentation bugs** : Rapport PDF disponible (BugRepport_TC1.pdf)
+- **Traçabilité** : Annotations @Step sur toutes les méthodes de pages
 
 ## 🎯 Cas d'Usage
 
@@ -304,6 +364,16 @@ Les contributions sont les bienvenues ! Pour contribuer :
 
 
 ## 📄 Changelog
+
+### Version 4.0 (Janvier 2026) - feature/allure-reporting-integration
+- ✅ **Intégration complète Allure Reporting** avec framework interactif
+- ✅ **Annotations Allure** sur tous les 13 cas de tests (@Description, @Epic, @Feature, @Story, @Owner, @Severity, @Link, @TmsLink)
+- ✅ **Annotations @Step** sur toutes les méthodes de pages pour traçabilité complète
+- ✅ **AspectJ Weaver 1.9.22** configuré dans Maven Surefire pour instrumentation
+- ✅ **Allure TestNG 2.25.0** et **Allure Cucumber7 JVM 2.25.0** intégrés
+- ✅ **Rapports interactifs** avec graphiques, timeline, tendances et métadonnées enrichies
+- ✅ Migration vers **Brave Browser** pour le blocage des publicités
+- ✅ Délai d'attente de 5 secondes pour la détection des publicités
 
 ### Version 3.0 (Janvier 2026) - feature/brave-browser-reporting
 - ✅ Migration vers **Brave Browser** pour le blocage des publicités

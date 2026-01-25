@@ -2,12 +2,14 @@ package TestPages;
 
 import Pages.ContactUsPage;
 import Pages.DriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 public class TestContactUsPage extends TestBase {
     ContactUsPage contactUsObj;
 
+    @Step("Fill Contact Us form with name, email, subject, message and upload file, then submit and verify success message")
     @Test
     public void testContactUsPage() {
         WebDriver driver = DriverManager.getDriver(); // pour l'implementation du DriverManager singleton
